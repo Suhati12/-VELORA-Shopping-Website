@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VELORA — Luxury Contemporary Fashion & Apparel</title>
+  <meta name="description" content="VELORA — Modern luxury fashion designed for those who stand apart. Explore high-end dresses, tailoring, leather goods, and accessories." />
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container nav-container">
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <a href="#home" class="nav-logo" onclick="VeloraApp.navigateTo('home')">VELORA<span>.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active" data-view="home">Home</a></li>
+        <li><a href="#shop" class="nav-link" data-view="shop" onclick="VeloraApp.resetShopFilters()">Collections</a></li>
+        <li><a href="#shop" class="nav-link" data-view="shop">New Arrivals</a></li>
+        <li><a href="#shop" class="nav-link" data-view="shop">Men</a></li>
+        <li><a href="#shop" class="nav-link" data-view="shop">Women</a></li>
+        <li><a href="#shop" class="nav-link" data-view="shop">Accessories</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <button class="icon-btn" onclick="VeloraApp.navigateTo('shop'); document.getElementById('shop-search-input').focus()" title="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="icon-btn" onclick="alert('Welcome back to VELORA Luxury Club.')" title="Account">
+          <i class="fa-regular fa-user"></i>
+        </button>
+        <button class="icon-btn" onclick="VeloraApp.navigateTo('wishlist')" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge" id="wishlist-badge-count">0</span>
+        </button>
+        <button class="icon-btn" onclick="VeloraApp.navigateTo('cart')" title="Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge" id="cart-badge-count">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <a href="#home" class="nav-logo">VELORA<span>.</span></a>
+      <button class="icon-btn" id="drawer-close-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#home" class="mobile-nav-link" data-view="home">Home</a></li>
+      <li><a href="#shop" class="mobile-nav-link" data-view="shop">Collections</a></li>
+      <li><a href="#shop" class="mobile-nav-link" data-view="shop">New Arrivals</a></li>
+      <li><a href="#shop" class="mobile-nav-link" data-view="shop">Men</a></li>
+      <li><a href="#shop" class="mobile-nav-link" data-view="shop">Women</a></li>
+      <li><a href="#shop" class="mobile-nav-link" data-view="shop">Accessories</a></li>
+      <li><a href="#wishlist" class="mobile-nav-link" data-view="wishlist">Wishlist</a></li>
+      <li><a href="#cart" class="mobile-nav-link" data-view="cart">Cart</a></li>
+    </ul>
+  </aside>
+
+  <!-- ==========================================================================
+       VIEW 1: HOME PAGE
+       ========================================================================== -->
+  <main id="view-home" class="page-view active-view">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-bg-wrapper">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80" alt="Velora Fashion Hero" class="hero-bg-img" />
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-subtitle">Autumn / Winter 2026 Collection</div>
+          <h1 class="hero-title">DEFINE YOUR STYLE.</h1>
+          <p class="hero-desc">Contemporary fashion designed for those who stand apart. Crafted with uncompromising precision and Italian fabrics.</p>
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="VeloraApp.navigateTo('shop')">EXPLORE COLLECTION <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-outline" onclick="VeloraApp.navigateTo('shop')">SHOP NEW ARRIVALS</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="section-padding container">
+      <span class="section-tag">CURATED CATEGORIES</span>
+      <h2 class="section-title">FEATURED COLLECTIONS</h2>
+      
+      <div class="collections-grid">
+        <div class="collection-card" onclick="VeloraApp.navigateTo('shop')">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Urban Essentials" class="collection-img" />
+          <div class="collection-overlay">
+            <h3 class="collection-title">Urban Essentials</h3>
+            <span class="collection-link">DISCOVER LINE <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <div class="collection-card" onclick="VeloraApp.navigateTo('shop')">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" alt="Modern Classics" class="collection-img" />
+          <div class="collection-overlay">
+            <h3 class="collection-title">Modern Classics</h3>
+            <span class="collection-link">DISCOVER LINE <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <div class="collection-card" onclick="VeloraApp.navigateTo('shop')">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Signature Accessories" class="collection-img" />
+          <div class="collection-overlay">
+            <h3 class="collection-title">Signature Accessories</h3>
+            <span class="collection-link">DISCOVER LINE <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals Grid (8 Products) -->
+    <section class="section-padding container">
+      <div class="products-header">
+        <div>
+          <span class="section-tag">NEW SEASON</span>
+          <h2 class="section-title">NEW ARRIVALS</h2>
+        </div>
+        <button class="btn-outline" onclick="VeloraApp.navigateTo('shop')">VIEW ALL PRODUCTS</button>
+      </div>
+
+      <div class="product-grid" id="home-new-arrivals-grid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+      <div class="container" style="position: relative; z-index: 2">
+        <span class="section-tag">EXCLUSIVE PREVIEW</span>
+        <h2 class="promo-title">THE NEW STANDARD</h2>
+        <p class="promo-desc">Discover our latest architectural silhouettes and limited edition leather craft.</p>
+        <button class="btn-primary" onclick="VeloraApp.navigateTo('shop')">SHOP COLLECTION <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Trending Now (Horizontal Scroll) -->
+    <section class="section-padding container">
+      <span class="section-tag">MOST COVETED</span>
+      <h2 class="section-title">TRENDING NOW</h2>
+      <div class="trending-scroll-wrapper" id="trending-scroll-container">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="section-padding container">
+      <div class="brand-story-grid">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80" alt="Brand Story Fashion" class="brand-story-img" />
+        <div class="brand-story-content">
+          <span class="section-tag">OUR PHILOSOPHY</span>
+          <h2 class="section-title" style="margin-bottom: 1.5rem">Designed for individuality.</h2>
+          <p>Founded in 2026, VELORA rejects fast-fashion trends in pursuit of timeless architectural silhouettes, understated luxury, and meticulous Italian tailoring.</p>
+          <p>Every piece in our collection is crafted in limited quantities using sustainably sourced silk, full-grain calfskin leather, and Grade-A Mongolian cashmere.</p>
+          <button class="btn-outline" onclick="VeloraApp.navigateTo('shop')" style="margin-top: 1rem">OUR CRAFTSMANSHIP</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="section-padding container" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-subtle)">
+      <div style="text-align: center">
+        <span class="section-tag">VOICES OF ELEGANCE</span>
+        <h2 class="section-title">CLIENT TESTIMONIALS</h2>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <i class="fa-solid fa-quote-right quote-icon"></i>
+          <div class="product-rating" style="margin-bottom: 1rem">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text">“The silk gown exceeded every expectation. The weight of the silk and fluid drape feels like true haute couture.”</p>
+          <div class="review-author">EMMA V.</div>
+          <div class="review-location">New York, USA</div>
+        </div>
+
+        <div class="review-card">
+          <i class="fa-solid fa-quote-right quote-icon"></i>
+          <div class="product-rating" style="margin-bottom: 1rem">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text">“The Skeleton Watch is a masterclass in modern horology. Clean lines, immaculate gold finishing, and prompt delivery.”</p>
+          <div class="review-author">JULIAN M.</div>
+          <div class="review-location">London, UK</div>
+        </div>
+
+        <div class="review-card">
+          <i class="fa-solid fa-quote-right quote-icon"></i>
+          <div class="product-rating" style="margin-bottom: 1rem">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text">“VELORA brings back real craftsmanship. The leather tote has become my daily signature piece.”</p>
+          <div class="review-author">CLARA R.</div>
+          <div class="review-location">Milan, Italy</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section-padding container">
+      <div class="newsletter-box">
+        <span class="section-tag">THE INSIDER CLUB</span>
+        <h2 class="section-title">JOIN THE VELORA LIST</h2>
+        <p>Get early access to private capsule collections, bespoke styling updates, and VIP events.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Enter your email address..." required />
+          <button type="submit" class="btn-primary">SUBSCRIBE</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 2: SHOP PAGE
+       ========================================================================== -->
+  <main id="view-shop" class="page-view container section-padding">
+    <div style="margin-bottom: 2rem">
+      <span class="section-tag">CATALOGUE</span>
+      <h1 class="section-title">EXPLORE COLLECTIONS</h1>
+    </div>
+
+    <!-- Shop Toolbar -->
+    <div class="shop-toolbar">
+      <span id="shop-results-count" style="font-size: 0.85rem; color: var(--text-secondary)">Showing products...</span>
+      <div class="toolbar-controls">
+        <input type="text" id="shop-search-input" placeholder="Search catalogue..." style="padding: 0.5rem 1rem; font-size: 0.85rem; width: 220px;" />
+        <select id="shop-sort-select">
+          <option value="newest">Sort by: Newest</option>
+          <option value="price-low">Sort by: Price Low to High</option>
+          <option value="price-high">Sort by: Price High to Low</option>
+          <option value="popularity">Sort by: Popularity</option>
+        </select>
+        <button class="btn-outline" style="padding: 0.5rem 1rem;" onclick="VeloraApp.resetShopFilters()">Reset</button>
+      </div>
+    </div>
+
+    <div class="shop-layout">
+      <!-- Sidebar Filters -->
+      <aside class="filter-sidebar">
+        <div class="filter-group">
+          <h3 class="filter-title">Categories</h3>
+          <ul class="filter-categories-list">
+            <li><button class="filter-cat-btn active" data-cat="All">All Categories</button></li>
+            <li><button class="filter-cat-btn" data-cat="Dresses">Dresses</button></li>
+            <li><button class="filter-cat-btn" data-cat="Shirts">Shirts</button></li>
+            <li><button class="filter-cat-btn" data-cat="T-Shirts">T-Shirts</button></li>
+            <li><button class="filter-cat-btn" data-cat="Jeans">Jeans</button></li>
+            <li><button class="filter-cat-btn" data-cat="Shoes">Shoes</button></li>
+            <li><button class="filter-cat-btn" data-cat="Bags">Bags</button></li>
+            <li><button class="filter-cat-btn" data-cat="Watches">Watches</button></li>
+            <li><button class="filter-cat-btn" data-cat="Accessories">Accessories</button></li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h3 class="filter-title">Max Price</h3>
+          <div class="price-range-box">
+            <input type="range" id="price-range-slider" min="100" max="2000" step="50" value="2000" />
+            <div class="price-values">
+              <span>$100</span>
+              <span id="price-range-val" style="font-weight:600">$2000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3 class="filter-title">Sizes</h3>
+          <div class="size-grid">
+            <button class="size-btn active">All</button>
+            <button class="size-btn">XS</button>
+            <button class="size-btn">S</button>
+            <button class="size-btn">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="shop-products-grid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 3: PRODUCT DETAILS PAGE
+       ========================================================================== -->
+  <main id="view-product-details" class="page-view container section-padding">
+    <div style="margin-bottom: 2rem">
+      <a href="#shop" onclick="VeloraApp.navigateTo('shop')" style="font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-gold)">
+        <i class="fa-solid fa-arrow-left"></i> Back to Collections
+      </a>
+    </div>
+
+    <div class="product-details-grid">
+      <!-- Gallery -->
+      <div class="details-gallery">
+        <div class="thumbnails-column" id="detail-thumbnails">
+          <!-- Injected via JS -->
+        </div>
+        <div class="main-image-box">
+          <img id="detail-main-img" src="" alt="Product Detail Main" />
+        </div>
+      </div>
+
+      <!-- Info Column -->
+      <div>
+        <div class="product-meta-category section-tag">Category</div>
+        <h1 class="product-meta-name">Product Name</h1>
+        <div class="product-meta-rating product-rating" style="margin: 0.8rem 0"></div>
+
+        <div class="details-price-row">
+          <span class="details-price">$0</span>
+          <span class="details-original-price product-original-price"></span>
+          <span class="stock-status">In Stock</span>
+        </div>
+
+        <p class="product-meta-description" style="margin-bottom: 2rem"></p>
+
+        <!-- Color Options -->
+        <div style="margin-bottom: 1.5rem">
+          <label style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.6rem">Select Color</label>
+          <div class="color-swatches" id="detail-color-swatches"></div>
+        </div>
+
+        <!-- Size Selector -->
+        <div style="margin-bottom: 2rem">
+          <label style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.6rem">Select Size</label>
+          <div class="size-grid" id="detail-size-selector" style="max-width: 300px"></div>
+        </div>
+
+        <!-- Quantity & Actions -->
+        <div style="margin-bottom: 1rem">
+          <label style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.6rem">Quantity</label>
+          <div class="quantity-picker">
+            <button class="qty-btn" onclick="const i = document.getElementById('detail-qty-input'); if(i.value > 1) i.value--">-</button>
+            <input type="text" class="qty-input" id="detail-qty-input" value="1" readonly />
+            <button class="qty-btn" onclick="const i = document.getElementById('detail-qty-input'); i.value++">+</button>
+          </div>
+        </div>
+
+        <div class="details-actions">
+          <button class="btn-primary" onclick="VeloraApp.addToCartFromDetail()"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+          <button class="btn-outline" onclick="VeloraApp.buyNowFromDetail()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <div class="details-tabs">
+      <div class="tab-headers">
+        <button class="tab-btn active" onclick="document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); document.getElementById('tab-details-content').classList.add('active');">Product Details</button>
+        <button class="tab-btn" onclick="document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); document.getElementById('tab-materials-content').classList.add('active');">Material & Care</button>
+        <button class="tab-btn" onclick="document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); document.getElementById('tab-shipping-content').classList.add('active');">Shipping Information</button>
+      </div>
+
+      <div class="tab-content active" id="tab-details-content"></div>
+      <div class="tab-content" id="tab-materials-content"></div>
+      <div class="tab-content" id="tab-shipping-content"></div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="section-padding">
+      <span class="section-tag">RECOMMENDED FOR YOU</span>
+      <h2 class="section-title">RELATED PIECES</h2>
+      <div class="product-grid" id="related-products-grid" style="margin-top: 2rem"></div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 4: CART PAGE
+       ========================================================================== -->
+  <main id="view-cart" class="page-view container section-padding">
+    <div style="margin-bottom: 2rem">
+      <span class="section-tag">YOUR SELECTION</span>
+      <h1 class="section-title">SHOPPING BAG</h1>
+    </div>
+
+    <div id="cart-empty-state" class="empty-state" style="display: none;">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem">Your Bag is Empty</h3>
+      <p>Explore our latest autumn collections to discover your next signature piece.</p>
+      <button class="btn-primary" style="margin-top: 1.5rem" onclick="VeloraApp.navigateTo('shop')">EXPLORE SHOP</button>
+    </div>
+
+    <div class="cart-grid" id="cart-content-wrapper">
+      <div>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-table-body">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
+        
+        <div style="margin-top: 2rem">
+          <button class="btn-outline" onclick="VeloraApp.navigateTo('shop')"><i class="fa-solid fa-arrow-left"></i> CONTINUE SHOPPING</button>
+        </div>
+      </div>
+
+      <!-- Order Summary Card -->
+      <div class="order-summary-box">
+        <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--accent-gold)">ORDER SUMMARY</h3>
+        
+        <div class="summary-row"><span>Subtotal</span><span id="cart-subtotal-val">$0.00</span></div>
+        <div class="summary-row"><span>Discount</span><span id="cart-discount-val">-$0.00</span></div>
+        <div class="summary-row"><span>Estimated Shipping</span><span id="cart-shipping-val">FREE</span></div>
+        <div class="summary-row total-row"><span>Total</span><span id="cart-total-val">$0.00</span></div>
+
+        <div class="promo-input-group">
+          <input type="text" id="promo-code-input" placeholder="Promo code (e.g. VELORA10)" />
+          <button class="btn-outline" style="padding: 0.8rem 1rem" onclick="VeloraApp.applyPromoCode()">APPLY</button>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; margin-top: 1rem" onclick="VeloraApp.navigateTo('checkout'); VeloraApp.setCheckoutStep(1)">
+          PROCEED TO CHECKOUT <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 5: CHECKOUT PAGE
+       ========================================================================== -->
+  <main id="view-checkout" class="page-view container section-padding">
+    <div style="margin-bottom: 2rem; text-align: center">
+      <span class="section-tag">SECURE PAYMENT</span>
+      <h1 class="section-title">CHECKOUT</h1>
+    </div>
+
+    <!-- Steps -->
+    <div class="checkout-steps">
+      <div class="checkout-step-item active" data-step="1">
+        <span class="step-num">1</span>
+        <span>Delivery Info</span>
+      </div>
+      <div class="checkout-step-item" data-step="2">
+        <span class="step-num">2</span>
+        <span>Payment</span>
+      </div>
+      <div class="checkout-step-item" data-step="3">
+        <span class="step-num">3</span>
+        <span>Order Review</span>
+      </div>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto">
+      <!-- Step 1: Delivery -->
+      <div class="checkout-panel-step" id="checkout-step-1">
+        <h3 style="font-size: 1.2rem; color: var(--accent-gold); margin-bottom: 1.5rem">1. Shipping Information</h3>
+        <form class="checkout-form-grid" onsubmit="event.preventDefault(); VeloraApp.setCheckoutStep(2)">
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">Full Name *</label>
+            <input type="text" required placeholder="Lord / Lady John Doe" style="width:100%" />
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">Phone Number *</label>
+            <input type="tel" required placeholder="+1 (555) 019-2834" style="width:100%" />
+          </div>
+          <div class="full-width">
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">Email Address *</label>
+            <input type="email" required placeholder="client@domain.com" style="width:100%" />
+          </div>
+          <div class="full-width">
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">Street Address *</label>
+            <input type="text" required placeholder="740 Park Avenue, Apt 12B" style="width:100%" />
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">City *</label>
+            <input type="text" required placeholder="New York" style="width:100%" />
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">State / Province *</label>
+            <input type="text" required placeholder="NY" style="width:100%" />
+          </div>
+          <div class="full-width">
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">PIN / Postal Code *</label>
+            <input type="text" required placeholder="10021" style="width:100%" />
+          </div>
+          <div class="full-width" style="margin-top: 1rem">
+            <button type="submit" class="btn-primary" style="width: 100%">CONTINUE TO PAYMENT <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Payment -->
+      <div class="checkout-panel-step" id="checkout-step-2" style="display: none">
+        <h3 style="font-size: 1.2rem; color: var(--accent-gold); margin-bottom: 1.5rem">2. Payment Method</h3>
+        <div class="payment-options">
+          <label class="payment-option-card active">
+            <input type="radio" name="pay-method" checked onclick="document.getElementById('card-fields').style.display='block'; document.getElementById('upi-fields').style.display='none'" />
+            <i class="fa-solid fa-credit-card gold-text" style="font-size: 1.5rem"></i>
+            <div>
+              <div style="font-weight: 600">Credit / Debit Card</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted)">Visa, Mastercard, American Express</div>
+            </div>
+          </label>
+
+          <label class="payment-option-card">
+            <input type="radio" name="pay-method" onclick="document.getElementById('card-fields').style.display='none'; document.getElementById('upi-fields').style.display='block'" />
+            <i class="fa-solid fa-mobile-screen-button gold-text" style="font-size: 1.5rem"></i>
+            <div>
+              <div style="font-weight: 600">Instant UPI Payment</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted)">Google Pay, Apple Pay, PhonePe, BHIM</div>
+            </div>
+          </label>
+
+          <label class="payment-option-card">
+            <input type="radio" name="pay-method" onclick="document.getElementById('card-fields').style.display='none'; document.getElementById('upi-fields').style.display='none'" />
+            <i class="fa-solid fa-hand-holding-dollar gold-text" style="font-size: 1.5rem"></i>
+            <div>
+              <div style="font-weight: 600">Cash on Delivery</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted)">Pay upon white-glove arrival</div>
+            </div>
+          </label>
+        </div>
+
+        <div id="card-fields" class="checkout-form-grid" style="margin-bottom: 2rem">
+          <div class="full-width">
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">Card Number</label>
+            <input type="text" placeholder="4000 1234 5678 9010" style="width:100%" />
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">Expiry Date</label>
+            <input type="text" placeholder="12 / 28" style="width:100%" />
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">CVV Security Code</label>
+            <input type="password" placeholder="•••" style="width:100%" />
+          </div>
+        </div>
+
+        <div id="upi-fields" class="checkout-form-grid" style="display:none; margin-bottom: 2rem">
+          <div class="full-width">
+            <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem">VPA / UPI ID</label>
+            <input type="text" placeholder="user@okaxis" style="width:100%" />
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem">
+          <button class="btn-outline" onclick="VeloraApp.setCheckoutStep(1)">BACK</button>
+          <button class="btn-primary" style="flex:1" onclick="VeloraApp.setCheckoutStep(3)">REVIEW ORDER <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review -->
+      <div class="checkout-panel-step" id="checkout-step-3" style="display: none">
+        <h3 style="font-size: 1.2rem; color: var(--accent-gold); margin-bottom: 1.5rem">3. Order Summary & Confirmation</h3>
+        
+        <div class="order-summary-box" id="checkout-review-summary" style="margin-bottom: 2rem">
+          <!-- Injected via JS -->
+        </div>
+
+        <div style="display: flex; gap: 1rem">
+          <button class="btn-outline" onclick="VeloraApp.setCheckoutStep(2)">BACK</button>
+          <button class="btn-primary" style="flex:1" onclick="VeloraApp.placeOrder(event)">PLACE ORDER <i class="fa-solid fa-check"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 6: WISHLIST PAGE
+       ========================================================================== -->
+  <main id="view-wishlist" class="page-view container section-padding">
+    <div style="margin-bottom: 2rem">
+      <span class="section-tag">SAVED ITEMS</span>
+      <h1 class="section-title">WISHLIST</h1>
+    </div>
+
+    <div id="wishlist-empty-state" class="empty-state" style="display: none;">
+      <i class="fa-regular fa-heart"></i>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem">Your Wishlist is Empty</h3>
+      <p>Save pieces you love while browsing to access them easily later.</p>
+      <button class="btn-primary" style="margin-top: 1.5rem" onclick="VeloraApp.navigateTo('shop')">BROWSE COLLECTIONS</button>
+    </div>
+
+    <div class="product-grid" id="wishlist-products-grid">
+      <!-- Injected via JS -->
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       MODALS & OVERLAYS
+       ========================================================================== -->
+  <!-- Quick View Modal -->
+  <div class="modal-backdrop" id="quick-view-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn icon-btn" onclick="VeloraApp.closeModal('quick-view-modal')"><i class="fa-solid fa-xmark"></i></button>
+      <div class="product-details-grid" style="gap: 2rem">
+        <div class="main-image-box" style="aspect-ratio: 3/4">
+          <img id="qv-img" src="" alt="Quick View Image" />
+        </div>
+        <div>
+          <span class="section-tag" id="qv-category">Category</span>
+          <h2 id="qv-title" style="font-size: 1.8rem; margin-bottom: 0.5rem">Product Name</h2>
+          <div id="qv-price" class="details-price" style="margin-bottom: 1rem">$0</div>
+          <p id="qv-desc" style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--text-secondary)"></p>
+          <button class="btn-primary" id="qv-add-btn" style="width: 100%"><i class="fa-solid fa-bag-shopping"></i> ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div class="modal-backdrop" id="order-confirmation-modal">
+    <div class="modal-container" style="max-width: 550px">
+      <div class="order-success-card">
+        <div class="success-icon-badge">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2 style="font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 0.1em">ORDER CONFIRMED</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem">Thank you for choosing VELORA. Your bespoke luxury package is now being prepared by our master ateliers.</p>
+        
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-gold); padding: 1rem; margin-bottom: 2rem">
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted)">Order Reference Number</div>
+          <div id="confirmed-order-number" style="font-size: 1.5rem; color: var(--accent-gold); font-weight: 700; letter-spacing: 0.15em">VEL-000000</div>
+        </div>
+
+        <button class="btn-primary" style="width: 100%" onclick="VeloraApp.closeModal('order-confirmation-modal'); VeloraApp.navigateTo('home')">
+          RETURN TO HOME
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" id="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">VELORA<span>.</span></div>
+          <p style="margin-bottom: 1.5rem">Defining contemporary luxury fashion through precision Italian tailoring, rare silk weaves, and sculptural aesthetics.</p>
+          <div style="display: flex; gap: 1rem">
+            <a href="#" class="icon-btn"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="icon-btn"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#" class="icon-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="#shop" onclick="VeloraApp.navigateTo('shop')">New Arrivals</a></li>
+            <li><a href="#shop" onclick="VeloraApp.navigateTo('shop')">Haute Couture</a></li>
+            <li><a href="#shop" onclick="VeloraApp.navigateTo('shop')">Leather Goods</a></li>
+            <li><a href="#shop" onclick="VeloraApp.navigateTo('shop')">Horology</a></li>
+            <li><a href="#shop" onclick="VeloraApp.navigateTo('shop')">Fine Jewelry</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Client Care</h4>
+          <ul class="footer-links">
+            <li><a href="#">Complimentary Shipping</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Bespoke Tailoring</a></li>
+            <li><a href="#">Authenticity Guarantee</a></li>
+            <li><a href="#">Care Instructions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Atelier</h4>
+          <ul class="footer-links">
+            <li><a href="#">Flagship Milan</a></li>
+            <li><a href="#">Boutique Paris</a></li>
+            <li><a href="#">New York Salon</a></li>
+            <li><a href="#">Tokyo Studio</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 VELORA Luxury Fashion House. All Rights Reserved.</div>
+        <div>Designed for individuality.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
